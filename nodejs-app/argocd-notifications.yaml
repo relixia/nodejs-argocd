@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: argocd-notifications-cm
+  namespace: argocd
+data:
+  service.slack: |
+    token: $slack-webhook
+  trigger.on-sync-status-unknown: |
+    - description: Application sync state is unknown
+      send: [slack]
