@@ -1,11 +1,28 @@
 apiVersion: v1
-kind: ConfigMap
-metadata:
-  name: argocd-notifications-cm
-  namespace: argocd
 data:
   service.slack: |
-    token: $slack-webhook
+    token: https://hooks.slack.com/services/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
   trigger.on-sync-status-unknown: |
     - description: Application sync state is unknown
       send: [slack]
+  trigger.on-sync-status-healthy: |
+    - description: Application sync state is healthy
+      send: [slack]
+      message: |
+        :white_check_mark: *Application Sync Success*  
+        Application *nodejs-app* has successfully synced.  
+        *Revision*: `85b528a1bf075c08a1398899ce163690991bc32c`  
+        *Health Status*: Healthy  
+        *Sync Status*: Synced to HEAD  
+        *Duration*: 0s  
+        All tasks have run successfully.
+kind: ConfigMap
+metadata:
+  annotations:
+    kubectl.kubernetes.io/last-applied-configuration: |
+      {"apiVersion":"v1","data":{"service.slack":"token: https://hooks.slack.com/services/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\n","trigger.on-sync-status-unknown":"- description: Application sync state is unknown\n  send: [slack]\n"},"kind":"ConfigMap","metadata":{"annotations":{},"name":"argocd-notifications-cm","namespace":"argocd"}}
+  creationTimestamp: "2025-03-26T23:05:10Z"
+  name: argocd-notifications-cm
+  namespace: argocd
+  resourceVersion: "123888"
+  uid: a6d04fb5-36d9-4833-99c8-b519f7546724
