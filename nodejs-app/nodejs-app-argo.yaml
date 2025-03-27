@@ -9,7 +9,7 @@ metadata:
 spec:
   project: default
   source:
-    repoURL: https://github.com/bezkoder/nodejs-express-mysql.git
+    repoURL: https://github.com/relixia/nodejs-argocd.git
     targetRevision: HEAD
     path: /
     helm:
